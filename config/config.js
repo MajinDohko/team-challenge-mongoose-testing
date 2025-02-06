@@ -1,3 +1,4 @@
+//!Configuramos la llamada a la BD a través de Mongoose:
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -13,9 +14,3 @@ const dbConnection = async () =>{
 };
 
 module.exports = dbConnection;
-
-
-
-
-
-

@@ -2,6 +2,7 @@ const express = require('express');
 const Post = require('../models/Post');
 const router = express.Router();
 
+//!Endpoint para crear un post:
 router.post('/create', async (req, res) => {
     try {
         const post = await Post.create({...req.body});
@@ -10,7 +11,7 @@ router.post('/create', async (req, res) => {
         res.status(500).json({ error: 'no se ha podido publicar el post'});
     }
 });
-
+//!Endpoint para traernos todos los post:
 router.get('/', async (req, res) => {
     try {
         //res.send(`<h1>Página Funcionando</h1>`)
@@ -21,7 +22,7 @@ router.get('/', async (req, res) => {
     }
     
 });
-
+//!Endpoint para buscar un post por su ID:
 router.get('/id/:_id', async (req, res) => {
     try {
         const id = req.params._id;
@@ -33,10 +34,7 @@ router.get('/id/:_id', async (req, res) => {
         console.error('error al encontrar el post' , error)
     }
 })
-
-
-
-
+//!Endpoint para buscar un post por su Título:
 router.get('/title/:title', async (req, res) => {
     try {
         const title = req.params.title;
@@ -48,7 +46,7 @@ router.get('/title/:title', async (req, res) => {
         console.error('error al encontrar el post' , error)
     }
 })
-
+//!Endpoint para actualizar una publicación buscándola por su ID:
 router.put('/id/:_id', async (req, res) => {
     try {
         const post = await Post.findByIdAndUpdate(
@@ -65,7 +63,7 @@ router.put('/id/:_id', async (req, res) => {
         console.error('error al actualizar el post', error);
     }
 
-
+//!Endpoint para elimnar un post por su ID:
 router.delete('/id/:_id', async (req, res) => {
     try {
         const post = await Post.findByIdAndDelete(req.params._id);
@@ -76,8 +74,7 @@ router.delete('/id/:_id', async (req, res) => {
 })
 
 })
-
-//! EXTRA PAGINACIÓN de 10 en 10:
+//! EXTRA!!!//!Endpoint para traer máximo 10 post por página:
 router.get("/postsWithPagination", async (req, res) => {
     try {
         let { page } = req.query;
@@ -103,9 +100,3 @@ router.get("/postsWithPagination", async (req, res) => {
 
 
 module.exports = router;
-
-
-
-
-
-
