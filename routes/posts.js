@@ -4,9 +4,7 @@ const router = express.Router();
 
 router.post('/create', async (req, res) => {
     try {
-        const { title } = req.body;
-        const post = new Post({ title });
-        await post.save();
+        const post = await Post.create({...req.body});
         res.status(201).json(post);
     } catch (error) {
         res.status(500).json({ error: 'no se ha podido publicar el post'});
@@ -23,6 +21,8 @@ router.get('/', async (req, res) => {
     }
     
 });
+
+
 
 module.exports = router;
 

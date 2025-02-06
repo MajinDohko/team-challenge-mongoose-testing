@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const {dbConnection} = require('./config/config');
-const routes = require('./routes/posts');
+const dbConnection = require('./config/config');
+const router = require('./routes/posts');
 
-app.use('/', routes)
+app.use('/', router)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

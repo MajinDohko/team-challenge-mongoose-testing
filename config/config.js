@@ -12,9 +12,8 @@ const dbConnection = async () =>{
     };
 };
 
-module.exports = {
-    dbConnection,
-};
+module.exports = dbConnection;
+
 
 /* const mongoose = require('mongoose');
 const path = require('path'); 

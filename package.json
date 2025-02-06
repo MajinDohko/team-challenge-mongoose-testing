@@ -9,12 +9,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Téneis que crear una API en Node.js utilizando Express con mongoose que consistirá en una red social, donde podras crear, ver publicaciones, actulizar y borrarlas.",
   "dependencies": {
     "dotenv": "16.4.7",
     "express": "4.21.2",
     "jest": "29.7.0",
+    "mongodb": "6.13.0",
     "mongoose": "8.9.7",
     "tc": "file:"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0"
   }
 }
