@@ -22,6 +22,58 @@ router.get('/', async (req, res) => {
     
 });
 
+router.get('/id/:_id', async (req, res) => {
+    try {
+        const id = req.params._id;
+        const post = await Post.findById(id);
+        if (!post) res.json({ mensaje : 'no se encuentra el post' });
+        res.status(200).json(post)
+
+    } catch (error) {
+        console.error('error al encontrar el post' , error)
+    }
+})
+
+
+
+router.get('/title/:title', async (req, res) => {
+    try {
+        const title = req.params.title;
+        const post = await Post.find(title);
+        if (!post) res.json({ mensaje : 'no se encuentra el post' });
+        res.status(200).json(post)
+    
+    } catch (error) {
+        console.error('error al encontrar el post' , error)
+    }
+})
+
+router.put('/id/:_id', async (req, res) => {
+    try {
+        const post = await Post.findByIdAndUpdate(
+            req.params._id, 
+            {title: req.body.title},
+            {body: req.body.body},
+            {new:true}
+        )
+        if (!post) {
+            return res.status(404).json({ error: 'post no encontrado' });
+        }
+        res.status(200),json(post);
+    } catch (error) {
+        console.error('error al actualizar el post', error);
+    }
+
+router.delete('/id/:_id', async (req, res) => {
+    try {
+        const post = await Post.findByIdAndDelete(req.params._id);
+        res.status(200).json({mensaje: 'post eliminado correctamente', post})
+    } catch (error) {
+        console.error('error al eliminar el post', error);
+    }
+})
+
+})
 
 
 module.exports = router;
