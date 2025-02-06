@@ -1,3 +1,4 @@
+//!Configuramos el testeo de la creación de post:
 const request = require('supertest');
 const mongoose = require('mongoose');
 const app = require('../index');
@@ -23,6 +24,3 @@ describe('POST /create', () => {
         expect(postsCount).toBe(1);
     });
 });
-
-
-
