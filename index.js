@@ -16,29 +16,3 @@ app.listen(PORT, ()=> console.log(`Server started on port ${PORT}`));
 
 module.exports = app;
 
-/* 
-const express = require('express');
-const app =  express();
-const PORT = 3000;
-
-const dbConnection = require('./config/config');
--- AQUI NO METE EL DBCONNECTION ENTRE LLAVES--
---LA PARTE DE APP.USE NO APARECE, DIRECTAMENTE --
-
-const routes = require('./routes/posts');
-
-app.use(express.json());
-
-app.use('/', routes);
-
-dbConnection();
-
-app.listen(PORT, () => {
-    console.log(`Server listening on http://localhost:${PORT}`)
-})
--- ESTO ME LO SACA DE MANERA DIFERENTE SIEMPRE--
-
-module.exports = app;
-
-
-*/

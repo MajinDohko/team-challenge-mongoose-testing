@@ -55,7 +55,7 @@ router.put('/id/:_id', async (req, res) => {
             {title: req.body.title},
             {body: req.body.body},
             {new:true}
-        )
+        );
         if (!post) {
             return res.status(404).json({ error: 'post no encontrado' });
         }
@@ -63,6 +63,7 @@ router.put('/id/:_id', async (req, res) => {
     } catch (error) {
         console.error('error al actualizar el post', error);
     }
+
 
 router.delete('/id/:_id', async (req, res) => {
     try {
@@ -74,6 +75,30 @@ router.delete('/id/:_id', async (req, res) => {
 })
 
 })
+
+//! EXTRA PAGINACIÓN de 10 en 10:
+router.get("/postsWithPagination", async (req, res) => {
+    try {
+        let { page } = req.query;
+        page = parseInt(page) || 1; 
+
+        const limit = 10; 
+        const skip = (page - 1) * limit; 
+
+        const posts = await Post.find().skip(skip).limit(limit);
+        const totalPosts = await Post.countDocuments(); 
+        const totalPages = Math.ceil(totalPosts / limit); 
+
+        res.json({
+            page,
+            totalPages,
+            totalPosts,
+            posts
+        });
+    } catch (error) {
+        res.status(500).json({ error: "Error al obtener las publicaciones" });
+    }
+});
 
 
 module.exports = router;
