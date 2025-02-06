@@ -39,7 +39,7 @@ router.get('/id/:_id', async (req, res) => {
 router.get('/title/:title', async (req, res) => {
     try {
         const title = req.params.title;
-        const post = await Post.find(title);
+        const post = await Post.find({title:title});
         if (!post) res.json({ mensaje : 'no se encuentra el post' });
         res.status(200).json(post)
     
@@ -63,6 +63,8 @@ router.put('/id/:_id', async (req, res) => {
     } catch (error) {
         console.error('error al actualizar el post', error);
     }
+})
+
 
 router.delete('/id/:_id', async (req, res) => {
     try {
@@ -73,7 +75,7 @@ router.delete('/id/:_id', async (req, res) => {
     }
 })
 
-})
+
 
 
 module.exports = router;
