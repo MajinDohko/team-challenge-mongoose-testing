@@ -75,7 +75,7 @@ router.delete('/id/:_id', async (req, res) => {
     }
 })
 
-})
+
 
 //! EXTRA PAGINACIÓN de 10 en 10:
 router.get("/postsWithPagination", async (req, res) => {
